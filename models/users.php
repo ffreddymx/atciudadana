@@ -19,7 +19,14 @@ class User{
 
 		$sql=$this->db->query("SELECT * from user where usuario='$datos[0]' and password='$password'");
 		if($sql->rowCount() > 0){
+
+			foreach ($sql as $row){
+				$_SESSION['tipo'] = $row['Tipo'];
+			}
+
 			return 1;
+			//$_SESSION['tipo']=;
+
 		}else{
 			return 0;
 		}

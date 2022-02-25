@@ -13,9 +13,11 @@
     <div id="navbarSupportedContent" class="collapse navbar-collapse">
       <ul class="navbar-nav ml-auto">
         <li class="nav-item "><a href="inicio.php" class="nav-link">Inicio <span class="sr-only">(current)</span></a></li>
-        <li class="nav-item"><a href="#" class="nav-link">Usuarios</a></li>
-        <li class="nav-item"><a href="#" class="nav-link">Solicitante</a></li>
-        <li class="nav-item"><a href="#" class="nav-link">Apoyos Económicos</a></li>
+        <?php if ($_SESSION['tipo'] == 1) { ?>
+        <li class="nav-item"><a href="usuarios.php" class="nav-link">Usuarios</a></li>
+        <li class="nav-item"><a href="solicitante.php" class="nav-link">Solicitudes</a></li>
+        <?php } ?>
+
         <li class="nav-item"><a href="salir.php" class="nav-link">Salir</a></li>
       </ul>
     </div>

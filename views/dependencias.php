@@ -16,12 +16,21 @@
 
 <style>
   body {
-  background-image: url(../statics/logo2.png);
+  background-image: url(../statics/fondoxxx.jpg);
   background-position: center center;
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-size: cover;
   }
+
+  a { color: inherit; } 
+
+  a:hover 
+{
+     color:#00A0C6; 
+     text-decoration:none; 
+     cursor:pointer;  
+}
 
 </style>
 

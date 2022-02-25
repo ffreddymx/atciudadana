@@ -20,19 +20,20 @@ class Profesor_model{
 
     public function saveProfesor($datos){
 
-        $this->db->exec("INSERT INTO profesor(Nombre,Apellido,Direccion,Movil,Profesion,Email) values('$datos[0]','$datos[1]','$datos[2]','$datos[3]','$datos[4]','$datos[5]')");
+
+        $this->db->exec("INSERT INTO solicitante(Nombre,Apellido,Direccion,Fecha,Hora,INE,Movil,Motivo,idapoyo) values('$datos[0]','$datos[1]','$datos[2]','$datos[3]','$datos[4]','$datos[5]','$datos[6]','$datos[7]','$datos[8]')");
     
     }
 
     public function updateProfesor($datos){
 
-        $this->db->exec("UPDATE profesor set Nombre='$datos[0]',Apellido='$datos[1]',Direccion='$datos[2]',Movil='$datos[3]',Profesion='$datos[4]',Email='$datos[5]' where id = '$datos[6]'  ");
+        $this->db->exec("UPDATE solicitante set Nombre='$datos[0]',Apellido='$datos[1]',Direccion='$datos[2]',Fecha='$datos[3]',Hora='$datos[4]',INE='$datos[5]',Movil='$datos[6]',Motivo='$datos[7]',idapoyo='$datos[8]' where id = '$datos[9]'  ");
         
     }
 
     public function xProfesor($datos){
 
-        $this->db->exec("DELETE FROM profesor  where id = '$datos[0]'  ");
+        $this->db->exec("DELETE FROM solicitante  where id = '$datos[0]'  ");
             
     }
 

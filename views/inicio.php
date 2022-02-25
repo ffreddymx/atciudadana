@@ -7,30 +7,34 @@
 
     <?php require_once "dependencias.php"; ?>
 
-    <div class="container">
+    <div class="container"  style='margin-left: 10px;'  >
 
     <div class="rowrow-cols-1 row-cols-md-2 g-4" style='margin-top: 10px;'>
   <div class="col">
   <div class="card text-white bg-secondary mb-3" style="max-width: 18rem;">
       <div class="card-body">
+      <a href="aeconomico.php"  class="nav-link">
         <h5 class="card-title">Apoyo Económicos</h5>
+        
+        </a> 
     </div>
     </div>
   </div>
   <div class="col">
     <div class="card text-white bg-secondary mb-3" style="max-width: 18rem;">
       <div class="card-body">
-        <h5 class="card-title">Apoyo para Medicamento</h5>
+      <a href="amedicamento.php"  class="nav-link">
+        <h5 class="card-title">Apoyo Medicamento</h5>
+       </a>
     </div>
     </div>
   </div>
   <div class="col">
   <div class="card text-white bg-secondary mb-3" style="max-width: 18rem;">
-  <a href=""  class="nav-link">
-
+  <a href="aoperacion.php"  class="nav-link">
       <div class="card-body" >
-        <h5 class="card-title">Apoyo para Operación</h5>
-   
+        <h5 class="card-title">Apoyo Operación</h5>
+
     </div>    
  </a> 
     </div>
@@ -38,8 +42,9 @@
   <div class="col">
   <div class="card text-white bg-secondary mb-3" style="max-width: 18rem;">
       <div class="card-body">
-        <h5 class="card-title">Apoyo en Especie</h5>
-        
+      <a href="aespecie.php"  class="nav-link">
+        <h5 class="card-title">Apoyo Especie</h5>
+    </a>
     </div>
     </div>
   </div>

@@ -21,10 +21,10 @@ public function alumnos($a,$link)
 			while($filas = $consulta->fetch(PDO::FETCH_ASSOC) ){
 				$this->alumnos[] = $filas;
 			}
-      echo "<table class='table table-sm table-hover'><thead class='thead-dark'><tr> ";//iniciamos la tabla
+      echo "<table class='table table-sm table-hover table-dark'><thead ><tr> ";//iniciamos la tabla
             
         foreach($this->alumnos[0] as $key=>$value){
-                  echo'<th>' . ($key) . '</th>';
+                  echo'<th  >' . ($key) . '</th>';
                   $this->target[] = $key;
                }
   
@@ -32,7 +32,7 @@ public function alumnos($a,$link)
                echo '</tr></thead><tbody border="1">';
 
                 foreach ( $this->alumnos as $r ) {
-                 echo '<tr id='.$r["id"].'>';
+                 echo '<tr    id='.$r["id"].'>';
                  $i = 0;
                     foreach ( $r as $v ) {
                     echo '<td data-target="'.$this->target[$i].'">'.$v.'</td>';
@@ -42,6 +42,45 @@ public function alumnos($a,$link)
                   ?>
             <td style='width:30px;'><a class="btn btn-info btn-sm" aria-controls="collapseExample" data-toggle="collapse" href="#collapseExample" data-role="updateAlumno" data-id="<?php echo $r['id']; ?>"><i class="fas fa-edit"></i></a></td>     
             <td style='width:30px;'><a class="btn btn-danger btn-sm" aria-controls="xAlumno" data-toggle="collapse" href="#xAlumno" data-role="xAlumno" data-id="<?php echo $r['id']; ?>"><i class="fas fa-trash-alt"></i></a></td>        
+             <?php       
+                   } 
+                echo '</tr>';
+                }
+        echo '</tbody> </table>';
+    }
+
+//======================================================================
+
+public function teconomico($a,$link)
+    {           
+      $consulta = $this->db->query($a);
+			while($filas = $consulta->fetch(PDO::FETCH_ASSOC) ){
+				$this->alumnos[] = $filas;
+			}
+      echo "<table class='table table-sm table-hover table-dark'><thead ><tr> ";//iniciamos la tabla
+            
+        foreach($this->alumnos[0] as $key=>$value){
+                  echo'<th  >' . ($key) . '</th>';
+                  $this->target[] = $key;
+               }
+  
+               echo "<th colspan='2' style='width:50px;' >Acciones</th>";
+               echo '</tr></thead><tbody border="1">';
+
+                foreach ( $this->alumnos as $r ) {
+                 echo '<tr    id='.$r["id"].'>';
+                 $i = 0;
+                    foreach ( $r as $v ) {
+                    echo '<td data-target="'.$this->target[$i].'">'.$v.'</td>';
+                    $i++;
+                }
+                if($link!=0){
+                  if ($_SESSION['tipo'] == 1) { 
+                  ?>
+
+            <td style='width:30px;'><a class="btn btn-info btn-sm" aria-controls="collapseExample" data-toggle="collapse" href="#collapseExample" data-role="updateAlumno" data-id="<?php echo $r['id']; ?>"><i class="fas fa-edit"></i></a></td>     
+            <?php    }   ?>
+            <td style='width:30px;'><a class="btn btn-danger btn-sm" aria-controls="xAlumno" data-toggle="modal" data-target="#myModal" data-role="myModal" data-id="<?php echo $r['id']; ?>"><i class="fas fa-eye"></i></a></td>        
              <?php       
                    } 
                 echo '</tr>';
@@ -86,6 +125,42 @@ public function alumnos($a,$link)
     }
 
 
+
+      //==============================================================
+
+      public function usuarios($a,$link)
+      {           
+        $consulta = $this->db->query($a);
+        while($filas = $consulta->fetch(PDO::FETCH_ASSOC) ){
+          $this->alumnos[] = $filas;
+        }
+        echo "<table class='table table-sm table-hover table-dark'><thead ><tr> ";//iniciamos la tabla
+              
+          foreach($this->alumnos[0] as $key=>$value){
+                    echo'<th>' . ($key) . '</th>';
+                    $this->target[] = $key;
+                 }
+    
+                 echo "<th colspan='2' style='width:50px;' >Acciones</th>";
+                 echo '</tr></thead><tbody border="1">';
+  
+                  foreach ( $this->alumnos as $r ) {
+                   echo '<tr id='.$r["id"].'>';
+                   $i = 0;
+                      foreach ( $r as $v ) {
+                      echo '<td data-target="'.$this->target[$i].'">'.$v.'</td>';
+                      $i++;
+                  }
+                  if($link!=0){
+                    ?>
+              <td style="width:30px;"><a class="btn btn-info btn-sm" aria-controls="collapseExample" data-toggle="collapse" href="#collapseExample" data-role="updateAlumno" data-id="<?php echo $r['id']; ?>"><i class="fas fa-edit"></a></td>     
+              <td style="width:30px;"><a class="btn btn-danger btn-sm" aria-controls="xAlumno" data-toggle="collapse" href="#xAlumno" data-role="xAlumno" data-id="<?php echo $r['id']; ?>"><i class="fas fa-trash-alt"></i></a></td>        
+               <?php       
+                     } 
+                  echo '</tr>';
+                  }
+          echo '</tbody> </table>';
+      }
   //==============================================================GRUPO
 
   public function grupo($a,$link)

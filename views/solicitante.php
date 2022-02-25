@@ -3,13 +3,17 @@ session_start();
 require_once '../db/db.php';
 require_once "../tablasUniver/cuerpo.php";
 require_once 'dependencias.php';//parte del codigo html principal
+require_once '../models/apoyo_model.php';
+
+$per=new Apoyo_model();
+$apoyo = $per->get_apoyo();
 ?>
 
 
-<p class="lead" style="margin-top: 0px" >Lista de Profesor</p> <hr class="my-1" >
-    <div  align="left" style="margin-bottom: 5px; margin-top: 0px;">
+<p class="lead"  align="center" style="margin-top: 0px;  background-color:#ccc; " >Lista de Solicitantes</p> <hr class="my-1" >
+    <div  align="left" style="margin-bottom: 5px; margin-top: 0px;   "    >
       <a  class="btn btn-info" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
-    Agregar profesor
+    Nuevo Solicitante
    </a>
     </div>
 
@@ -21,7 +25,7 @@ require_once 'dependencias.php';//parte del codigo html principal
                 <div class="form-group">
                 <form id="formAlumno" >
                   <input type="hidden" name="opc" id="opc" value="0">
-                  <label>Nombre</label>
+                  <label>Nombre Completo</label>
                   <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Nombre" maxlength="30" pattern="[a-zA-ZñÑáéíóúÁÉÍÓÚ\s]+"
   >
               </div>
@@ -45,29 +49,75 @@ require_once 'dependencias.php';//parte del codigo html principal
             </div>
 
 
-              <div class="col-sm-3">
-                <div class="form-group">
-                  <label>Tel Movil</label>
-                  <input type="text" class="form-control" id="movil" name="movil" placeholder="Numero Movil" maxlength="10" pattern="^[0-9]+"  >
-              </div>
-            </div>
 
 
-                <div class="col-sm-3">
+
+            <div class="col-sm-3">
                 <div class="form-group">
-                  <label>Email</label>
-                  <input type="text" class="form-control" id="email" name="email" maxlength="40"
- placeholder="Correo electronico"   >
+                  <label>Fecha</label>
+                  <input type="date" class="form-control" id="fecha" name="fecha" maxlength="250" 
+ placeholder="Fecha"  >
               </div>
             </div>
 
             <div class="col-sm-3">
                 <div class="form-group">
-                  <label>Profesión</label>
-                  <input type="text" class="form-control" id="profesion" name="profesion" maxlength="40"
- placeholder="Profesión"   >
+                  <label>Hora</label>
+                  <input type="time" class="form-control" id="hora" name="hora" maxlength="250" 
+ placeholder="hora"  >
               </div>
             </div>
+
+            <div class="col-sm-3">
+                <div class="form-group">
+                  <label>Identificación</label>
+                  <input type="text" class="form-control" id="ine" name="ine" maxlength="250" 
+ placeholder="Identificación"  >
+              </div>
+            </div>
+
+
+              <div class="col-sm-3">
+                <div class="form-group">
+                  <label>Celular</label>
+                  <input type="text" class="form-control" id="movil" name="movil" placeholder="Numero de Celular" maxlength="10" pattern="^[0-9]+"  >
+              </div>
+            </div>
+
+
+
+            <div class="col-sm-3">
+                <div class="form-group">
+             <label>Tipo de Apoyo</label>
+
+                <div class="mb-3">
+                    <select class="form-select" name="apoyo" id="apoyo">
+                        <option selected disabled>Seleccionar el Apoyo</option>
+                        <?php
+                        foreach($apoyo as $apoyos){ 
+                        echo "<option value='".$apoyos['id']."'>".$apoyos['Apoyo']."</option>";
+                        }
+                        ?>
+                    </select>
+                </div>
+
+                </div>
+            </div>
+
+
+
+
+            <div class="col-sm-9">
+                <div class="form-group">
+                  <label>Motivo</label>
+                  <textarea  rows="3" class="form-control" id="motivo" name="motivo" maxlength="300"
+ placeholder="Motivo de Atención">   </textarea >
+              </div>
+            </div>
+
+
+
+
 
 
       <div class="col-sm-3">
@@ -85,10 +135,10 @@ require_once 'dependencias.php';//parte del codigo html principal
   <div class="card card-body ">
   <form id="formXAlumno" >
 <div class="alert alert-danger" role="alert">
-  Confirme si desea eliminar al profesor ?
+  Confirme si desea eliminar al Solicitante?
   <input type="hidden" name="IDx" id="IDx" class="form-control">
 </div>
-         <span id="xAlumno" data-toggle="collapse"  class="btn btn-danger">Eliminar Alumno</span>
+         <span id="xAlumno" data-toggle="collapse"  class="btn btn-danger">Eliminar Solicitante</span>
          <a   data-toggle="collapse" href="#xAlumno" class="btn btn-success">Cancelar</a>
   </form>
   </div>
@@ -98,7 +148,7 @@ require_once 'dependencias.php';//parte del codigo html principal
 
             <?php
             $table = new tablacuerpo();
-             $table->alumnos("SELECT * FROM profesor order by Nombre",1);
+             $table->alumnos("SELECT * FROM solicitante order by Nombre",1);
              ?>
 
 
@@ -120,9 +170,9 @@ require_once 'dependencias.php';//parte del codigo html principal
             $.ajax({
               type:"POST",
               data:datos,
-              url:"../controllers/profesor/save.php",
+              url:"../controllers/solicitante/save.php",
               success:function(data){
-                  window.location="../views/profesor.php";
+                  window.location="../views/solicitante.php";
                  }
             }); 
 
@@ -132,9 +182,9 @@ require_once 'dependencias.php';//parte del codigo html principal
             $.ajax({
               type:"POST",
               data:datos,
-              url:"../controllers/profesor/update.php",
+              url:"../controllers/solicitante/update.php",
               success:function(data){
-                  window.location="../views/profesor.php";
+                  window.location="../views/solicitante.php";
                  }
             }); 
              }
@@ -149,6 +199,11 @@ require_once 'dependencias.php';//parte del codigo html principal
                 var direccion  = $('#'+id).children('td[data-target=Direccion]').text();
                 var matricula  = $('#'+id).children('td[data-target=Matricula]').text();
                 var movil  = $('#'+id).children('td[data-target=Movil]').text();
+                var ine  = $('#'+id).children('td[data-target=INE]').text();
+                var hora  = $('#'+id).children('td[data-target=Hora]').text();
+                var fecha  = $('#'+id).children('td[data-target=Fecha]').text();
+                var apoyo  = $('#'+id).children('td[data-target=idapoyo]').text();
+                var motivo  = $('#'+id).children('td[data-target=Motivo]').text();
                 var profesion  = $('#'+id).children('td[data-target=Profesion]').text();
                 var opc = 1;
 
@@ -158,8 +213,18 @@ require_once 'dependencias.php';//parte del codigo html principal
                 $('#direccion').val(direccion);                   
                 $('#matricula').val(matricula);
                 $('#movil').val(movil);
+                $('#ine').val(ine);
+                $('#hora').val(hora);
+                $('#fecha').val(fecha);
                 $('#profesion').val(profesion);
+                $('#motivo').val(motivo);
                 $('#opc').val(opc);
+
+                $('#apoyo > option[value="'+apoyo+'"]').attr('selected', 'selected');
+
+
+
+
           });
 
 
@@ -175,9 +240,9 @@ require_once 'dependencias.php';//parte del codigo html principal
               $.ajax({
                 type:"POST",
                 data:datos,
-                url:"../controllers/profesor/delete.php",
+                url:"../controllers/solicitante/delete.php",
                 success:function(data){
-                    window.location="../views/profesor.php";
+                    window.location="../views/solicitante.php";
                   }
               }); 
           });
