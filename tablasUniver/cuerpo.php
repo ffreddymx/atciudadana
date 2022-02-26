@@ -75,7 +75,7 @@ public function teconomico($a,$link)
                     $i++;
                 }
                 if($link!=0){
-                  if ($_SESSION['tipo'] == 1) { 
+                  if ($_SESSION['tipo'] == 2) { 
                   ?>
 
             <td style='width:30px;'><a class="btn btn-info btn-sm" aria-controls="collapseExample" data-toggle="collapse" href="#collapseExample" data-role="updateAlumno" data-id="<?php echo $r['id']; ?>"><i class="fas fa-edit"></i></a></td>     
